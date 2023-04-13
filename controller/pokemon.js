@@ -2,8 +2,8 @@ import Pokemon from "../models/Pokemon.js";
 
 export const getPokemons = async (req, res) => {
     try{
-        const pokemon = await Pokemon.find();
-        res.json(pokemon);
+        const pokemons = await Pokemon.find();
+        res.json(pokemons);
     } catch (error) {
         console.log(error.message)
         res.status(500).json({error: error.message});
@@ -12,8 +12,8 @@ export const getPokemons = async (req, res) => {
 
 export const getPokemon = async (req, res) => {
     try {
-        const { id } = req.params
-        const pokemon = await Pokemon.findById(id)
+        const pokeid = req.params
+        const pokemon = await Pokemon.find(pokeid)
         res.json(pokemon);
     } catch (error) {
         console.log(error.message)
@@ -33,15 +33,16 @@ export const createPokemon = async (req, res) => {
 };
 
 export const updatePokemon = async (req, res) => {
-    const { id } = req.params;
-    const pokemon = await Pokemon.findByIdAndUpdate(id, )
+        const pokeid = req.params
+        const pokemon = await Pokemon.find(pokeid)
     res.status(200).json(pokemon);
 };
 
 export const deletePokemon = async (req, res) => {
     try {
-        const { id } = req.params;
-        const deleted = await Pokemon.findByIdAndDelete(id);
+        const pokeid = req.params
+        const deleted = await Pokemon.findOneAndDelete(pokeid)
+        findByIdAndDelete(id);
 
         if (deleted) {
             return res.status(200).send("Pokemon Deleted!");
