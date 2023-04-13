@@ -12,7 +12,7 @@ let Pokemon = new Schema({
     height: { type: Number, required: true },
     types: Types,
     abilities: Abilities,
-    moves: Moves
+    moves: Moves,
 })
 
 export default mongoose.model("pokemon", Pokemon)
